@@ -84,13 +84,12 @@ function buildAvailabilityMessage(av: Availability | null): string {
     return "En este momento no hay barberos en turno.";
   }
 
-  // Hay barberos LIBRES ahora mismo.
+  // Hay barberos LIBRES ahora mismo. NO decimos la cantidad (el dueño no la quiere) —
+  // solo que SÍ hay y que puede venir.
   if (av.professionals_available > 0) {
-    const n = av.professionals_available;
-    const libres = n === 1 ? "un barbero libre" : `${n} barberos libres`;
     return inQueue === 0
-      ? `Hay ${libres} ahora mismo, sin fila. Puedes venir directo.`
-      : `Hay ${libres} ahora mismo. Puedes venir directo.`;
+      ? "Sí, hay barberos disponibles ahora mismo, sin fila. Puedes venir directo."
+      : "Sí, hay barberos disponibles ahora mismo. Puedes venir directo.";
   }
 
   // Todos OCUPADOS (hay barberos trabajando, ninguno libre). Siempre invitamos a
